@@ -8,7 +8,7 @@
 | Verification code | **AI-A2-7659** |
 | Course | SWE 3513 Artificial Intelligence, Individual Assignment 2, INES-Ruhengeri |
 | Repository URL | `<add your repository URL>` |
-| Final commit hash | `<add the output of git rev-parse HEAD>` |
+| Final commit hash | `8cc3d13690b09fe1a7b55d5f984c08930fe14732 (code and artifacts as tested)` |
 | Python version | 3.12 (developed and tested on Ubuntu 24 Linux; also expected to run on Windows/macOS) |
 
 ## Problem
