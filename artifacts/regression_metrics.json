@@ -1,0 +1,48 @@
+{
+  "verification_code": "AI-A2-7659",
+  "target": "yield_tons",
+  "selection_rule": "lowest 5-fold cross-validated RMSE on the training set (baseline excluded)",
+  "baseline": "mean_baseline",
+  "models": {
+    "mean_baseline": {
+      "cv_rmse_train": 2.748739928521887,
+      "test": {
+        "MAE": 2.181377898550724,
+        "RMSE": 2.6346770336719816,
+        "R2": -0.021554353407706284
+      }
+    },
+    "linear_regression": {
+      "cv_rmse_train": 1.0282671597919535,
+      "test": {
+        "MAE": 0.8514599596747268,
+        "RMSE": 1.0408392840638516,
+        "R2": 0.8405685272083294
+      }
+    },
+    "random_forest": {
+      "cv_rmse_train": 1.4340137709122418,
+      "test": {
+        "MAE": 1.180905217391306,
+        "RMSE": 1.4147807195177156,
+        "R2": 0.7054324024254085
+      }
+    },
+    "gradient_boosting": {
+      "cv_rmse_train": 1.306026991413591,
+      "test": {
+        "MAE": 1.0709073119834085,
+        "RMSE": 1.296669313827644,
+        "R2": 0.7525626966888539
+      }
+    }
+  },
+  "selected_model": "linear_regression",
+  "selection_reason": "linear_regression had the lowest cross-validated RMSE on the training set (1.0283 tons) and beats the mean baseline on the held-out test set (RMSE 1.0408 vs 2.6347).",
+  "largest_error_case": {
+    "row_id": 4,
+    "actual_yield_tons": 8.91,
+    "predicted_yield_tons": 11.65367104944871,
+    "error": 2.743671049448709
+  }
+}

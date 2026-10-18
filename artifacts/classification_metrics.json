@@ -1,0 +1,107 @@
+{
+  "verification_code": "AI-A2-7659",
+  "target": "high_risk",
+  "positive_class": "high_risk = 1 (yield per hectare below the median)",
+  "selection_rule": "highest 5-fold cross-validated F1 on the training set (baseline excluded)",
+  "baseline": "majority_baseline",
+  "models": {
+    "majority_baseline": {
+      "cv_f1_train": 0.2622950819672131,
+      "test": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion_matrix": [
+          [
+            35,
+            0
+          ],
+          [
+            34,
+            0
+          ]
+        ],
+        "roc_auc": 0.5
+      }
+    },
+    "logistic_regression": {
+      "cv_f1_train": 0.9604815509693558,
+      "test": {
+        "precision": 1.0,
+        "recall": 0.9117647058823529,
+        "f1": 0.9538461538461539,
+        "confusion_matrix": [
+          [
+            35,
+            0
+          ],
+          [
+            3,
+            31
+          ]
+        ],
+        "roc_auc": 0.9932773109243698
+      }
+    },
+    "random_forest": {
+      "cv_f1_train": 0.9110530350922026,
+      "test": {
+        "precision": 0.9642857142857143,
+        "recall": 0.7941176470588235,
+        "f1": 0.8709677419354839,
+        "confusion_matrix": [
+          [
+            34,
+            1
+          ],
+          [
+            7,
+            27
+          ]
+        ],
+        "roc_auc": 0.9369747899159664
+      }
+    },
+    "gradient_boosting": {
+      "cv_f1_train": 0.8973604656083684,
+      "test": {
+        "precision": 1.0,
+        "recall": 0.7647058823529411,
+        "f1": 0.8666666666666667,
+        "confusion_matrix": [
+          [
+            35,
+            0
+          ],
+          [
+            8,
+            26
+          ]
+        ],
+        "roc_auc": 0.9857142857142857
+      }
+    }
+  },
+  "selected_model": "logistic_regression",
+  "selection_reason": "logistic_regression had the highest cross-validated F1 on the training set (0.9605); test F1 0.9538 vs 0.0000 for the baseline.",
+  "misclassified_test_rows": [
+    {
+      "row_id": 99,
+      "actual_high_risk": 1,
+      "predicted_high_risk": 0,
+      "risk_probability": 0.30220223936403084
+    },
+    {
+      "row_id": 4,
+      "actual_high_risk": 1,
+      "predicted_high_risk": 0,
+      "risk_probability": 0.11764654372424671
+    },
+    {
+      "row_id": 119,
+      "actual_high_risk": 1,
+      "predicted_high_risk": 0,
+      "risk_probability": 0.3459816608615007
+    }
+  ]
+}

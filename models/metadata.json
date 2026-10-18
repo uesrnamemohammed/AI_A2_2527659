@@ -1,0 +1,143 @@
+{
+  "verification_code": "AI-A2-7659",
+  "student_id": "ug2527659@ines.ac.rw",
+  "seed": 7659,
+  "dataset_sha256": "f6536a25a3cebf263fdd9117db03b9debc91f11b3cc55560672ea7c721429649",
+  "features": [
+    "rainfall_mm",
+    "avg_temp_c",
+    "soil_moisture_pct",
+    "fertilizer_kg",
+    "field_size_ha",
+    "season",
+    "cooperative_support"
+  ],
+  "ranges": {
+    "rainfall_mm": [
+      600.0,
+      1400.0
+    ],
+    "avg_temp_c": [
+      12.0,
+      26.0
+    ],
+    "soil_moisture_pct": [
+      20.0,
+      80.0
+    ],
+    "fertilizer_kg": [
+      0.0,
+      250.0
+    ],
+    "field_size_ha": [
+      0.2,
+      4.0
+    ]
+  },
+  "regression_model": "linear_regression",
+  "classification_model": "logistic_regression",
+  "selected_k": 6,
+  "cluster_profiles": {
+    "0": {
+      "size_train": 31,
+      "mean_features": {
+        "rainfall_mm": 1116.664941935484,
+        "avg_temp_c": 21.373938709677414,
+        "soil_moisture_pct": 36.86447333333333,
+        "fertilizer_kg": 206.7819806451613,
+        "field_size_ha": 2.947270967741935
+      },
+      "share_season_A": 0.25806451612903225,
+      "share_cooperative_support": 0.4838709677419355,
+      "profile": "Farms with heavy fertilizer, large fields, dry soil, mostly season B."
+    },
+    "1": {
+      "size_train": 31,
+      "mean_features": {
+        "rainfall_mm": 1141.3396451612905,
+        "avg_temp_c": 20.297303225806456,
+        "soil_moisture_pct": 66.56174838709678,
+        "fertilizer_kg": 142.21272068965513,
+        "field_size_ha": 0.8622516129032258
+      },
+      "share_season_A": 0.6129032258064516,
+      "share_cooperative_support": 0.5161290322580645,
+      "profile": "Farms with small fields, moist soil, high rainfall."
+    },
+    "2": {
+      "size_train": 30,
+      "mean_features": {
+        "rainfall_mm": 714.36874,
+        "avg_temp_c": 23.09042333333333,
+        "soil_moisture_pct": 59.69342400000001,
+        "fertilizer_kg": 155.3662653846154,
+        "field_size_ha": 2.2945666666666664
+      },
+      "share_season_A": 0.5,
+      "share_cooperative_support": 0.4666666666666667,
+      "profile": "Farms with low rainfall, warm temperature, moist soil."
+    },
+    "3": {
+      "size_train": 41,
+      "mean_features": {
+        "rainfall_mm": 890.3547317073169,
+        "avg_temp_c": 15.683224390243902,
+        "soil_moisture_pct": 42.95386315789474,
+        "fertilizer_kg": 165.70029743589745,
+        "field_size_ha": 1.1668414634146342
+      },
+      "share_season_A": 0.6341463414634146,
+      "share_cooperative_support": 0.3902439024390244,
+      "profile": "Farms with cool temperature, small fields, low rainfall."
+    },
+    "4": {
+      "size_train": 39,
+      "mean_features": {
+        "rainfall_mm": 1051.3207,
+        "avg_temp_c": 18.86814871794872,
+        "soil_moisture_pct": 63.23181111111111,
+        "fertilizer_kg": 92.48740277777779,
+        "field_size_ha": 3.2030846153846158
+      },
+      "share_season_A": 0.4358974358974359,
+      "share_cooperative_support": 0.5641025641025641,
+      "profile": "Farms with large fields, moist soil, little fertilizer."
+    },
+    "5": {
+      "size_train": 32,
+      "mean_features": {
+        "rainfall_mm": 1105.1284375,
+        "avg_temp_c": 19.951803125,
+        "soil_moisture_pct": 33.36815,
+        "fertilizer_kg": 63.017496875000006,
+        "field_size_ha": 1.480975
+      },
+      "share_season_A": 0.65625,
+      "share_cooperative_support": 0.65625,
+      "profile": "Farms with little fertilizer, dry soil, high rainfall."
+    }
+  },
+  "regression_test": {
+    "MAE": 0.8514599596747268,
+    "RMSE": 1.0408392840638516,
+    "R2": 0.8405685272083294
+  },
+  "classification_test": {
+    "precision": 1.0,
+    "recall": 0.9117647058823529,
+    "f1": 0.9538461538461539,
+    "confusion_matrix": [
+      [
+        35,
+        0
+      ],
+      [
+        3,
+        31
+      ]
+    ],
+    "roc_auc": 0.9932773109243698
+  },
+  "synthetic_data": true,
+  "disclaimer": "Classroom decision-support prototype trained on synthetic data. It does not replace an agronomist and must not be used to decide access to finance, insurance or public services. Human review is required."
+}
