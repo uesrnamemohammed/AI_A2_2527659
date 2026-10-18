@@ -9,6 +9,8 @@ from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import cm
 from reportlab.platypus import Image, PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
+from xml.sax.saxutils import escape
+
 from src import config
 
 FULL_NAME = "Mohammed Bashier Ahmed"
@@ -62,8 +64,31 @@ def _f(x, d=4):
     return "n/a" if x is None else f"{x:.{d}f}"
 
 
+def _own_sections() -> dict:
+    """Read the student's own interpretations from docs/my_interpretations.md (sections: regression, classification, cluster)."""
+    path = config.DOCS_DIR / "my_interpretations.md"
+    labels = {
+        "regression": "Important regression error (own interpretation).",
+        "classification": "Important classification error (own interpretation).",
+        "cluster": "Farm cluster (own interpretation).",
+    }
+    if not path.exists():
+        return {}
+    chunks, current = {}, None
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if stripped.startswith("##"):
+            name = stripped.lstrip("#").strip().lower()
+            current = name if name in labels else None
+            chunks.setdefault(current, []) if current else None
+        elif current and stripped and not stripped.startswith(">"):
+            chunks[current].append(stripped)
+    return {k: f"<b>{labels[k]}</b> " + escape(" ".join(v)) for k, v in chunks.items() if v}
+
+
 def build_report(identity: dict, student_id: str) -> Path:
     A = config.ARTIFACTS_DIR
+    own = _own_sections()
     reg = json.loads((A / "regression_metrics.json").read_text())
     clf = json.loads((A / "classification_metrics.json").read_text())
     clu = json.loads((A / "clustering_report.json").read_text())
@@ -156,7 +181,7 @@ def build_report(identity: dict, student_id: str) -> Path:
     e = reg["largest_error_case"]
     row = raw.loc[e["row_id"]]
     s += [Spacer(1, 4), _img(A / "plots" / "residuals.png", 11.5),
-          _p(f"<b>Important regression error.</b> The largest test error is row {e['row_id']}: actual {e['actual_yield_tons']:.2f} t, predicted {e['predicted_yield_tons']:.2f} t (error {e['error']:+.2f} t). "
+          _p(own.get("regression") or f"<b>Important regression error.</b> The largest test error is row {e['row_id']}: actual {e['actual_yield_tons']:.2f} t, predicted {e['predicted_yield_tons']:.2f} t (error {e['error']:+.2f} t). "
              f"Its inputs were rainfall {row['rainfall_mm']:.0f} mm, temperature {row['avg_temp_c']:.1f} C, field {row['field_size_ha']:.2f} ha. "
              f"The generator adds random noise with SD 0.80 t that no model can predict, so an error of this size is partly irreducible; the model's RMSE of {reg['models'][rs]['test']['RMSE']:.2f} t sits close to that noise level.", SMALL)]
     cs = clf["selected_model"]
@@ -177,7 +202,7 @@ def build_report(identity: dict, student_id: str) -> Path:
                 f"for a risk screening tool, missed high-risk farms (false negatives) matter more than false alarms.")
     else:
         text = "No test farm was misclassified."
-    s += [_p(text), PageBreak()]
+    s += [_p(own.get("classification") or text), PageBreak()]
 
     # Page 5
     s += [_p("5. Clustering", H1),
@@ -189,7 +214,7 @@ def build_report(identity: dict, student_id: str) -> Path:
         rows.append([k, str(v["size_train"]), Paragraph(v["profile"], SMALL)])
     s += [Spacer(1, 4), _table(rows, [2 * cm, 3 * cm, 12 * cm])]
     big = max(clu["profiles"].items(), key=lambda kv: kv[1]["size_train"])
-    s += [Spacer(1, 4), _p(f"<b>Operational meaning.</b> Cluster {big[0]} is the largest group ({big[1]['size_train']} training farms): {big[1]['profile'][:-1].lower()}. "
+    s += [Spacer(1, 4), _p(own.get("cluster") or f"<b>Operational meaning.</b> Cluster {big[0]} is the largest group ({big[1]['size_train']} training farms): {big[1]['profile'][:-1].lower()}. "
                            f"A field officer could plan visits per cluster, for example checking moisture management in dry-soil groups. Because the silhouette is weak, farms near cluster borders should not be treated as clearly different."),
           PageBreak()]
 
