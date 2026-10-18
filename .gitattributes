@@ -1,3 +1,4 @@
 *.pdf binary
 *.joblib binary
 *.png binary
+*.csv binary
