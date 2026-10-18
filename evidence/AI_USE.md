@@ -1,8 +1,7 @@
 # AI use disclosure
 
-- **Student:** Mohammed Bashier Ahmed, registration number 25/27659, verification code AI-A2-7659
-- **Tool used:** Claude (Anthropic), via the claude.ai chat interface.
-- **What the tool did:** Generated the initial project structure, the Python modules under `src/`, `run_all.py`, `predict.py`, `app.py`, the pytest tests, the README, and a first draft of the technical report text, all from the assignment brief.
-- **What I did:** Ran the pipeline and tests on my own machine, checked the outputs against the generated JSON/CSV artifacts, reviewed and rewrote the report interpretations (one regression error, one classification error, one farm cluster) in my own words, and prepared the demo video, handwritten card and declaration myself.
-
-Edit this file so it states exactly what you did before you submit it.
+- Student: Mohammed Bashier Ahmed, registration number 25/27659, verification code AI-A2-7659
+- Tool used: Claude (Anthropic), via the claude.ai chat interface.
+- What the tool did: generated the project structure, the Python modules, the tests, the README and the report generator from the assignment brief. It also translated my short Arabic explanations of one regression error, one classification error and one cluster into English; the ideas and conclusions come from my own understanding.
+- What I did: installed and ran the project on my Windows machine (10 tests passed, the fingerprint matched), tested the CLI and the API, created the git repository, and I will record the demo video and sign the declaration myself.
+- Understanding: I am studying the code and the results so that I can explain them and make a small change when asked.
