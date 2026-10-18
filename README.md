@@ -9,7 +9,7 @@
 | Course | SWE 3513 Artificial Intelligence, Individual Assignment 2, INES-Ruhengeri |
 | Repository URL | `<add your repository URL>` |
 | Final commit hash | `8cc3d13690b09fe1a7b55d5f984c08930fe14732 (code and artifacts as tested)` |
-| Python version | 3.12 (developed and tested on Ubuntu 24 Linux; also expected to run on Windows/macOS) |
+| Python version | 3.14.7 (tested on Windows, 10 passing tests; first developed on Python 3.12, Ubuntu 24) |
 
 ## Problem
 
